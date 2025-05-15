@@ -1,8 +1,8 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import FriendList from './components/FriendList'
+import { useState } from "react";
+import "./App.css";
+import FriendList from "./components/FriendList";
+import FormAddFriends from "./components/FormAddFriends";
+import FormSplitBill from "./components/FormSplitBill";
 const initialFriends = [
   {
     id: 118836,
@@ -24,13 +24,23 @@ const initialFriends = [
   },
 ];
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [friends, setFriends] = useState(initialFriends);
+  const [showModal, setShowModal] = useState(false);
+  const handleAddFriend = (friend) =>{
+    setFriends((friends) =>[...friends, friend]);
+  }
+  const handleClick = () =>{
+    setShowModal((prev) => !prev);
+  }
+  console.log(friends);
   return (
     <>
-      <FriendList friends={initialFriends} />
+      <FriendList friends={friends} />
+      {showModal && <FormAddFriends onAddFriend={handleAddFriend}/>}
+      <button onClick={handleClick}>{showModal ? 'close' : 'tambah teman'}</button>
+      <FormSplitBill />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
