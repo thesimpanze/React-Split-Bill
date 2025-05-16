@@ -1,12 +1,12 @@
 import Friend from "./Friend"
-const FriendList = ({friends})=>{
-    console.log('data dari friendlist', friends);
+const FriendList = ({friends, onSelected})=>{
+    
 return(
-    <>
-        {friends.map((friend, index)=>(
-            <Friend friend={friend} key={index}/>
+    <div className="flex flex-col gap-4 justify-center">
+            {friends.map((friend, index)=>(
+            <Friend friend={friend} key={index} onSelected={onSelected}/>
         ))}    
-    </>
+    </div>
 )
 }
 

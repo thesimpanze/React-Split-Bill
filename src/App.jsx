@@ -25,20 +25,27 @@ const initialFriends = [
 ];
 function App() {
   const [friends, setFriends] = useState(initialFriends);
+  const [selectedFriend, setSelectedFriend] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const handleAddFriend = (friend) =>{
-    setFriends((friends) =>[...friends, friend]);
-  }
-  const handleClick = () =>{
+  const handleAddFriend = (friend) => {
+    setFriends((friends) => [...friends, friend]);
+    setSelectedFriend(null)
+  };
+  const handleClick = () => {
     setShowModal((prev) => !prev);
-  }
-  console.log(friends);
+  };
+
+  const handleSelectFriend = (friend) => {
+    setSelectedFriend((selectedFriend) => selectedFriend === friend ? null : friend);
+    setShowModal(false)
+  };
+  console.log(selectedFriend);
   return (
     <>
-      <FriendList friends={friends} />
-      {showModal && <FormAddFriends onAddFriend={handleAddFriend}/>}
-      <button onClick={handleClick}>{showModal ? 'close' : 'tambah teman'}</button>
-      <FormSplitBill />
+      <FriendList friends={friends} onSelected={handleSelectFriend} />
+      {showModal && <FormAddFriends onAddFriend={handleAddFriend} />}
+      <button onClick={handleClick}>{showModal ? "close" : "tambah teman"}</button>
+      {selectedFriend && <FormSplitBill selectedFriend={selectedFriend}/>}
     </>
   );
 }

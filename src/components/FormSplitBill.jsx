@@ -1,4 +1,4 @@
-const FormSplitBill = ()=>{
+const FormSplitBill = ({selectedFriend})=>{
     return(
         <form action="">
             <h1>Patungan</h1>
@@ -6,7 +6,7 @@ const FormSplitBill = ()=>{
             <input type="text" />
             <label htmlFor="">tagihan kamu</label>
             <input type="text" />
-            <label htmlFor="">tagihan x</label>
+            <label htmlFor="">tagihan {selectedFriend.name}</label>
             <input type="text" disabled/>
             <label htmlFor="">di talangin sama</label>
             <select name="" id="">
